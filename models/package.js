@@ -12,22 +12,37 @@ var LRU = require("lru-cache")
 , moment = require('moment')
 , url = require('url')
 
-function urlPolicy (u) {
-  u = {
-    protocol: u.scheme_ + ':',
-    host: u.domain_ + (u.port_ ? ':' + u.port_ : ''),
-    pathname: u.path_,
-    query: u.query_,
-    hash: u.fragment_
+function urlPolicy (pkgData) {
+  return function (u) {
+    if (u.scheme_ === null && u.domain_ === null && pkgData.repository.type === 'git') {
+      // temporary fix for relative links in github readmes, until a more general fix is needed
+      var v = pkgData.repository.url
+      v = url.parse(v.slice(0, v.indexOf('.git')))
+      u = {
+        protocol: v.protocol,
+        host: v.host,
+        pathname: v.pathname,
+        query: u.query_,
+        hash: u.fragment_
+      }
+    } else {
+      u = {
+        protocol: u.scheme_ + ':',
+        host: u.domain_ + (u.port_ ? ':' + u.port_ : ''),
+        pathname: u.path_,
+        query: u.query_,
+        hash: u.fragment_
+      }
+    }
+    u = url.parse(url.format(u))
+    if (!u) return null
+    if (u.protocol === 'http:' &&
+        (u.hostname && u.hostname.match(/gravatar.com$/))) {
+      // use encrypted gravatars
+      return url.format('https://secure.gravatar.com' + u.pathname)
+    }
+    return url.format(u)
   }
-  u = url.parse(url.format(u))
-  if (!u) return null
-  if (u.protocol === 'http:' &&
-      (u.hostname && u.hostname.match(/gravatar.com$/))) {
-    // use encrypted gravatars
-    return url.format('https://secure.gravatar.com' + u.pathname)
-  }
-  return url.format(u)
 }
 
 function package (params, cb) {
@@ -109,9 +124,9 @@ function parseReadme (data) {
           .replace(/&/g, '&amp;')
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
-    p = sanitizer.sanitize(p, urlPolicy)
+    p = sanitizer.sanitize(p, urlPolicy(p))
   }
-  return sanitizer.sanitize(p, urlPolicy)
+  return sanitizer.sanitize(p, urlPolicy(data))
 }
 
 function gravatarPeople (data) {
