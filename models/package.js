@@ -11,13 +11,13 @@ var LRU = require("lru-cache")
 , npm = require("npm")
 , moment = require('moment')
 , url = require('url')
+, ghurl = require('github-url-from-git')
 
 function urlPolicy (pkgData) {
   return function (u) {
     if (u.scheme_ === null && u.domain_ === null && pkgData.repository.type === 'git') {
       // temporary fix for relative links in github readmes, until a more general fix is needed
-      var v = pkgData.repository.url
-      v = url.parse(v.slice(0, v.indexOf('.git')))
+      var v = url.parse(ghurl(pkgData.repository.url))
       u = {
         protocol: v.protocol,
         host: v.host,

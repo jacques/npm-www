@@ -16,6 +16,7 @@
     "ejs": "~0.7.1",
     "emcee": "0",
     "error-page": "0",
+    "github-url-from-git": "^1.1.1",
     "glob": "~3.1.12",
     "graceful-fs": "~1.2.0",
     "gravatar": "~1.0.6",
@@ -74,7 +75,8 @@
     "sanitizer",
     "st",
     "stylus",
-    "templar"
+    "templar",
+    "github-url-from-git"
   ],
   "engines": {
     "node": ">=0.7.7"
