@@ -14,10 +14,12 @@ var LRU = require("lru-cache")
 , ghurl = require('github-url-from-git')
 
 function urlPolicy (pkgData) {
+  var gh = pkgData && pkgData.repository ? ghurl(pkgData.repository.url) : null
   return function (u) {
-    if (u.scheme_ === null && u.domain_ === null && pkgData.repository.type === 'git') {
+    if (u.scheme_ === null && u.domain_ === null) {
+      if (!gh) return null
       // temporary fix for relative links in github readmes, until a more general fix is needed
-      var v = url.parse(ghurl(pkgData.repository.url))
+      var v = url.parse(gh)
       u = {
         protocol: v.protocol,
         host: v.host,
