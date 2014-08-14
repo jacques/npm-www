@@ -47,7 +47,7 @@ exports.profileFields =
 , email: [ 'Email', '<a href="mailto:%s">%s</a>', function (u) {
     return u.protocol === 'mailto:'
   } ]
-, github: [ 'Github', '<a rel="me" href="https://github.com/%s">%s</a>',
+, github: [ 'GitHub', '<a rel="me" href="https://github.com/%s">%s</a>',
     hostmatch(/^github.com$/) ]
 , twitter: [ 'Twitter', '<a rel="me" href="https://twitter.com/%s">@%s</a>',
     hostmatch(/^twitter.com$/) ]
