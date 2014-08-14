@@ -12,12 +12,18 @@ var config = require('../config.js')
 
 function urlPolicy (pkgData) {
   var gh = pkgData && pkgData.repository ? ghurl(pkgData.repository.url) : null
-  return function (u) {
+  return function (u, effect, ltype, hints) {
     if (u.scheme_ === null && u.domain_ === null) {
       if (!gh) return null
       // temporary fix for relative links in github readmes, until a more general fix is needed
       var v = url.parse(gh)
-      if (u.path_) { v.pathname = v.pathname + '/blob/master/' + u.path_}
+      if (u.path_) {
+          if(hints && hints.XML_TAG === 'a'){                           // if the tag is an anchor
+              v.pathname = v.pathname + '/blob/master/' + u.path_;          // we can link to the github html wrapped file
+          } else {                                                      // else
+              v.pathname = v.pathname + '/raw/master/' + u.path_;           // we link to the raw file
+          }
+      }
       u = {
         protocol: v.protocol,
         host: v.host,
