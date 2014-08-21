@@ -45,8 +45,8 @@
     "description": "<a href='https://www.uber.com/jobs/4807'>UBER</a> has the largest real time, distributed system built in Node.js and needs passionate contributors to scale our team to new heights.",
     "url": "https://www.uber.com/jobs/4807",
     "show_weight": 1
-  }, 
-  
+  },
+
   "mulesoft": {
     "id": "mulesoft",
     "name": "MuleSoft",
@@ -60,6 +60,22 @@
     "name": "Polyvore",
     "description": "<a href='http://www.polyvore.com/cgi/about.jobs'>Polyvore</a> is a profitable startup in Mountain View. Our product pushes JS to its limits, and we're looking for awesome Node.js engineers!",
     "url": "http://www.polyvore.com/cgi/about.jobs",
+    "show_weight": 1
+  },
+
+  "godaddy": {
+    "id": "godaddy",
+    "name": "GoDaddy",
+    "description": "At <a href='http://www.godaddy.com/careers/opportunities?isc=GPPT03C500'>GoDaddy</a> we're crazy about JavaScript. If you're into Node.js, NoSQL, Open Source and fun then we're into you. Come join us!",
+    "url": "http://www.godaddy.com/careers/opportunities?isc=GPPT03C500",
+    "show_weight": 1
+  },
+
+  "help": {
+    "id": "help",
+    "name": "Help.com",
+    "description": "<a href='http://help.com/#were-hiring'>Help.com</a> just raised $6 million and is hiring talented Node.js engineers in Austin to build our platform.",
+    "url": "http://help.com/#were-hiring",
     "show_weight": 1
   }
 }
