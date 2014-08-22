@@ -77,5 +77,13 @@
     "description": "<a href='http://help.com/#were-hiring'>Help.com</a> just raised $6 million and is hiring talented Node.js engineers in Austin to build our platform.",
     "url": "http://help.com/#were-hiring",
     "show_weight": 1
+  },
+
+  "jut": {
+    "id": "jut",
+    "name": "Jut",
+    "description": "<a href='http://www.jut.io'>Jut, Inc.</a> is looking for node.js developers to join our Open Source, early stage Big Data company in San Francisco.  Clean code base, amazingly successful founders - check us out.",
+    "url": "http://www.jut.io/",
+    "show_weight": 1
   }
 }
