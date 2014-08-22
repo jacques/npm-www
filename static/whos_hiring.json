@@ -34,8 +34,8 @@
   "newscred": {
     "id": "newscred",
     "name": "NewsCred",
-    "description": "We are the fastest growing start up in NYC and are looking to <a href='http://boards.greenhouse.io/newscred'>expand our team of engineers</a> to include: Automation, Sr Search, Full Stack and Javascript Engineers.",
-    "url": "http://boards.greenhouse.io/newscred",
+    "description": "We are the fastest growing start up in NYC and are looking to <a href='http://www.newscred.com/careers'>expand our team of engineers</a> to include: Automation, Sr Search, Full Stack and Javascript Engineers.",
+    "url": "http://www.newscred.com/careers",
     "show_weight": 1
   },
 
@@ -66,8 +66,8 @@
   "godaddy": {
     "id": "godaddy",
     "name": "GoDaddy",
-    "description": "At <a href='http://www.godaddy.com/careers/opportunities?isc=GPPT03C500'>GoDaddy</a> we're crazy about JavaScript. If you're into Node.js, NoSQL, Open Source and fun then we're into you. Come join us!",
-    "url": "http://www.godaddy.com/careers/opportunities?isc=GPPT03C500",
+    "description": "At <a href='https://hire.jobvite.com/j?cj=orfnYfwL&s=url'>GoDaddy</a> we're crazy about JavaScript. If you're into Node.js, NoSQL, Open Source and fun then we're into you. Come join us!",
+    "url": "https://hire.jobvite.com/j?cj=orfnYfwL&s=url",
     "show_weight": 1
   },
 
