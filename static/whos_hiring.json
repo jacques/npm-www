@@ -85,5 +85,13 @@
     "description": "<a href='http://www.jut.io'>Jut, Inc.</a> is looking for node.js developers to join our Open Source, early stage Big Data company in San Francisco.  Clean code base, amazingly successful founders - check us out.",
     "url": "http://www.jut.io/",
     "show_weight": 1
+  },
+
+  "nutanix": {
+    "id": "nutanix",
+    "name": "Nutanix",
+    "description": "<a href='http://www.nutanix.com/careers/current-openings/'>Nutanix</a> is one of the fastest growing infrastructure companies of all time and is looking for passionate JS engineers to expand our web team!",
+    "url": "http://www.nutanix.com/careers/current-openings/",
+    "show_weight": 1
   }
 }
