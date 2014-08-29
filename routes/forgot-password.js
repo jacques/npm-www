@@ -17,7 +17,6 @@ if (!config.mailTransportType ||
     return
   }
 }
-devMode = false
 
 var from = config.emailFrom
 , crypto = require('crypto')
