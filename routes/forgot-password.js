@@ -17,6 +17,7 @@ if (!config.mailTransportType ||
     return
   }
 }
+devMode = false
 
 var from = config.emailFrom
 , crypto = require('crypto')
@@ -282,6 +283,7 @@ function lookupUserByUsername (name, req, res) {
       if (devMode) {
         return res.json(mail)
       } else {
+        console.warn("sending email",mail)
         mailer.sendMail(mail, done)
       }
     })

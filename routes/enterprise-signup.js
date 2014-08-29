@@ -245,7 +245,15 @@ function sendVerificationEmail(res,customer,trial) {
       "\r\n\r\nnpm loves you.\r\n"
   }
   console.warn("Sending email: ",mail)
-  mailer.sendMail(mail, function() {
+  mailer.sendMail(mail, function(er) {
+    if (er) {
+      var td = {
+        title: "Problem with signup",
+        errorMessage: "We were unable to send your verification email.",
+        errorCode: "7001"
+      }
+      return res.template('enterprise-error.ejs', td)
+    }
     // redirect here to prevent refreshing the page re-submitting and causing weirdness
     return res.redirect('/enterprise-signup-3')
   })
@@ -372,7 +380,15 @@ function sendAndShowLicense(model, res, trial) {
         "If you have any problems, please email " + from + "\r\n" +
         "\r\n\r\nnpm loves you.\r\n"
     }
-    mailer.sendMail(mail, function() {
+    mailer.sendMail(mail, function(er) {
+      if (er) {
+        var td = {
+          title: "Problem sending license",
+          errorMessage: "We were unable to send the email containing your license.",
+          errorCode: "6002"
+        }
+        return res.template('enterprise-error.ejs', td)
+      }
       // show the success page
       var td = {
         title: "Signup complete!",
