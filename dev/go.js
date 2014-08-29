@@ -142,8 +142,8 @@ function launchWww (er) {
 
   config.mailTransportModule = "nodemailer-ses-transport"
   config.mailTransportSettings = {
-    accessKeyId: "AKIAI5NHZR3BN6YZAEQA",
-    secretAccessKey: "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",
+    accessKeyId: "xxx",
+    secretAccessKey: "yyy",
     region: "us-west-2"
   }
 
