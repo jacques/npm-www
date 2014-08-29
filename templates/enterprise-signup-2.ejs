@@ -1,0 +1,28 @@
+<%- include('header.ejs', locals) %>
+
+<h1>npm Enterprise User License Agreement</h1>
+
+<form accept-charset="UTF-8" action="/enterprise-signup-2" method="POST" id="npme-signup-form">
+  <%- csrf %>
+  <input type="hidden" id="customer_email" name="customer_email" value="<%= customer_email %>">
+  <input type="hidden" id="customer_id" name="customer_id" value="<%= customer_id %>">
+  <div class="license">
+    <div id="innerscroll">
+      AWWWWWWWWW
+      YEEEEEEAHHHHH
+    </div>
+  </div>
+  <div>
+    <label for="agree">I agree to the npm Enterprise ULA</label>
+    <div class="input">
+      <input type="checkbox" required="required" id="agree" name="agree">
+    </div>
+  </div>
+  <div>
+    <div class="actions">
+      <input class="hs-button primary large" type="submit" value="Finish signup">
+    </div>
+  </div>
+</form>
+
+<%- include('footer.ejs', locals) %>

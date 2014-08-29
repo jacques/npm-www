@@ -78,8 +78,12 @@ router.addRoute('/joinwhoshiring', require('./routes/payments.js'))
 router.addRoute('/npme-beta', function(req,res) {
   return res.redirect('/enterprise',301)
 })
-router.addRoute('/enterprise', require('./routes/npme-beta.js'))
-router.addRoute('/npme-beta-thanks', require('./routes/npme-beta.js'))
+router.addRoute('/enterprise', require('./routes/enterprise.js'))
+router.addRoute('/enterprise-signup-1', require('./routes/enterprise-signup.js').signUpStep1)
+router.addRoute('/enterprise-signup-2', require('./routes/enterprise-signup.js').signUpStep2)
+router.addRoute('/enterprise-signup-3', require('./routes/enterprise-signup.js').signUpStep3)
+router.addRoute('/enterprise-thanks', require('./routes/enterprise.js'))
+router.addRoute('/enterprise-verify', require('./routes/enterprise-signup.js').signUpStep4)
 
 router.addRoute('/', function (req, res) {
   var search = req.url && req.url.split('?')[1]

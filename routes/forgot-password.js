@@ -23,8 +23,10 @@ var from = config.emailFrom
 
 if (!devMode) {
   var nodemailer = require('nodemailer')
-  , mailer = nodemailer.createTransport(config.mailTransportType,
-                                        config.mailTransportSettings)
+  var transport = require(config.mailTransportModule)
+  var mailer = nodemailer.createTransport(
+    transport(config.mailTransportSettings)
+  )
 }
 
 module.exports = forgotPassword

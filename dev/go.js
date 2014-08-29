@@ -136,9 +136,16 @@ function launchWww (er) {
     "publickey": "pk_test_dxl0gkFmBMdyGvhgt7Q86KwH"
   }
 
-  // TODO:
-  // set expots.mailTransPortType and exports.mailTransportSettings
-  // so that it'll send email using the localhost's sendmail, maybe?
+  // WARNING: production email account
+  config.emailFrom = "support@npmjs.com"
+
+
+  config.mailTransportModule = "nodemailer-ses-transport"
+  config.mailTransportSettings = {
+    accessKeyId: "AKIAI5NHZR3BN6YZAEQA",
+    secretAccessKey: "Dy32qvccN589ePwY8rDU1ppQQa6B2yYseZva9nVL",
+    region: "us-west-2"
+  }
 
   // fakey fake SSL certs for convenience.
   var fs = require('fs')
@@ -155,7 +162,7 @@ function launchWww (er) {
   config.npm = config.npm || {
     registry: 'http://127.0.0.1:15984/',
     'strict-ssl': false,
-    loglevel: 'warn',
+    loglevel: 'info',
     username: '',
     _password: '',
     _auth: '',
@@ -174,6 +181,23 @@ function launchWww (er) {
   config.metrics = {
       collector: { host: 'dashboard-1-west.internal.npmjs.com', port: 3333 },
       prefix:     'www-dev'
+  }
+
+  config.license = {
+    "hubspot": {
+      "forms": "https://forms.hubspot.com/uploads/form/v2/:portal_id/:form_guid",
+      "portal_id": "419727",
+      "form_npme_signup": "56c0da62-e191-46b8-973d-9d57fa5b02f6",
+      "form_npme_call_me": "xxx",
+      "form_private_npm": "yyy"
+    },
+    "api": "http://10.0.2.2:5001",
+  }
+
+  config.npme = {
+    "product_id": 2,
+    "trial_length": 30,
+    "trial_seats": 50
   }
 
   config.debug = true
