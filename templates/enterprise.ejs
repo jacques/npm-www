@@ -123,18 +123,19 @@ from.</p>
 
 <p>npmE runs locally, on a server you control, with no external dependencies
   (mirroring the public registry of course requires external internet access,
-  but mirroring is optional). Many organizations want this for security, legal,
-  or operational reasons.
+  but mirroring is optional). Many organizations want this for security,
+  regulatory, or operational reasons.
 
-<p>As you would expect, npmE is installed by npm! Our installation process
+<p>As you would expect, npmE is installed using npm! Our installation process
 asks you a series of simple questions about your local environment, and sets
 up all the services it needs to run.</p>
 
 <p>npmE has been extensively tested on CentOS 6.5 and Ubuntu 14, and is
   supported on most recent public Linux distributions. It can run inside a
   virtual machine or on standard hardware. Since it can be configured to
-  host only your private packages, its disk space requirements are
-  significantly lighter than previous private registry solutions.</p>
+  only selectively mirror the public registry in addition to your private
+  packages, its disk space requirements are significantly lighter than other
+  private registry solutions.</p>
 
 <h3><a name="github">Integrates with GitHub and GitHub Enterprise</a></h3>
 
@@ -165,12 +166,6 @@ coming soon.</p>
 
 <form accept-charset="UTF-8" action="/enterprise-signup-1" method="POST" id="npme-signup-form">
   <%- csrf %>
-  <div>
-    <label for="comments">What interests you about npm Enterprise</label>
-    <div class="input">
-      <textarea required="required" id="comments" name="comments" value="" placeholder=""></textarea>
-    </div>
-  </div>
   <div>
     <label for="firstname">First Name</label>
     <div class="input">
@@ -203,15 +198,21 @@ coming soon.</p>
     </div>
   </div>
   <div>
-    <label for="numemployees">Number of Employees</label>
+    <label for="numemployees">Number of Employees (optional)</label>
     <div class="input">
-      <select id="numemployees" name="numemployees" required="required">
+      <select id="numemployees" name="numemployees">
         <option value="__PLACEHOLDER__">- Please Select -</option>
         <option value="1 - 25">1 - 25</option>
         <option value="26 - 100">26 - 100</option>
         <option value="100 - 1000">100 - 1000</option>
         <option value="1,000 +">1,000 +</option>
       </select>
+    </div>
+  </div>
+  <div>
+    <label for="comments">What interests you about npm Enterprise? (optional)</label>
+    <div class="input">
+      <textarea id="comments" name="comments" value="" placeholder=""></textarea>
     </div>
   </div>
   <div>

@@ -1,21 +1,22 @@
 <%- include('header.ejs', locals) %>
 
-<h1>npm Enterprise User License Agreement</h1>
+<h1>User License Agreement</h1>
 
-<form accept-charset="UTF-8" action="/enterprise-signup-2" method="POST" id="npme-signup-form">
+<p>To install your trial of npm Enterprise, we need you to agree to our
+  User License Agreement by checking the box below.</p>
+
+<form accept-charset="UTF-8" action="/enterprise-signup-2" method="POST" id="npme-agree-form">
   <%- csrf %>
   <input type="hidden" id="customer_email" name="customer_email" value="<%= customer_email %>">
   <input type="hidden" id="customer_id" name="customer_id" value="<%= customer_id %>">
   <div class="license">
     <div id="innerscroll">
-      AWWWWWWWWW
-      YEEEEEEAHHHHH
+      <%- include('license-text.ejs') %>
     </div>
   </div>
   <div>
-    <label for="agree">I agree to the npm Enterprise ULA</label>
     <div class="input">
-      <input type="checkbox" required="required" id="agree" name="agree">
+      <label for="agree"><input type="checkbox" required="required" id="agree" name="agree"> I agree to the npm Enterprise ULA</label>
     </div>
   </div>
   <div>

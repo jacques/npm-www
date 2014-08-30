@@ -17,15 +17,11 @@ module.exports = {
 
 // when they submit the initial signup form
 function signUpStep1(req, res) {
-  console.warn("Step 1 started")
   if (req.method != "POST") {
-    console.warn("NO POST")
     return res.error(405)
   }
-  console.warn("here")
   req.maxLen = 1024 * 1024
   return req.on('form', function (data) {
-    console.warn("form found")
     createHubspotLead(req.model,res,data)
   })
 }
@@ -38,11 +34,11 @@ function createHubspotLead(model,res,data) {
   // we don't have a good way to check if they already have a hubspot lead
   // so just post every time.
   var req = request.post(hubspot,function(er,httpResponse,body) {
-    console.warn("httpResponse",httpResponse.statusCode)
     // it shouldn't really be 302 but we can't seem to make it stop redirecting
     if (httpResponse.statusCode == 204 || httpResponse.statusCode == 302) {
       return getOrCreateCustomer(model,res,data)
     } else {
+      console.warn("Could not contact hubspot")
       var td = {
         title: "Problem with signup",
         errorMessage: "",
@@ -115,7 +111,6 @@ function getOrCreateCustomer(model,res,data) {
 
 function showClickThroughAgreement(res,customer) {
   // we use both email and ID so people can't just guess an ID to get a license
-  console.warn("clickthrough shown with:",customer)
   var td = {
     title: "Terms and Conditions",
     customer_id: customer.id,
@@ -135,7 +130,6 @@ function signUpStep2(req,res) {
 }
 
 function checkCustomerExists(model,res,data) {
-  console.warn("verifying customer with data",data)
   model.load('customer',data.customer_email)
   model.end(function(er,modelData) {
     if(er) {
@@ -198,7 +192,6 @@ function createTrial(res,customer) {
           seats: trialSeats
         }
       },function(er,httpResponse,trial) {
-        console.warn("trial creation response:",httpResponse.statusCode)
         // stop if we couldn't create the trial
         if(httpResponse.statusCode != 200) {
           var td = {
@@ -244,7 +237,6 @@ function sendVerificationEmail(res,customer,trial) {
       "or email " + from + "\r\n" +
       "\r\n\r\nnpm loves you.\r\n"
   }
-  console.warn("Sending email: ",mail)
   mailer.sendMail(mail, function(er) {
     if (er) {
       var td = {
@@ -271,7 +263,6 @@ function signUpStep3(req, res) {
 // when the click the verification link in the email
 function signUpStep4(req, res) {
   var qs = url.parse(req.url,true).query
-  console.warn("step 4 query:",qs)
   if (!qs.v) {
     var td = {
       title: "Error verifying email",
@@ -287,7 +278,6 @@ function signUpStep4(req, res) {
 function verifyTrial(model,res,verificationKey) {
 
   var trialEndpoint = config.license.api + '/trial'
-  console.warn("Looking for verification key",verificationKey)
 
   // first see if there's a trial with this verification key
   request.get({
@@ -304,7 +294,6 @@ function verifyTrial(model,res,verificationKey) {
           url: trialEndpoint + '/' + trial.id + '/verification',
           json: true
         },function(er,httpResponse,verifiedTrial) {
-          console.warn("trial verification response:",httpResponse.statusCode)
           // if verification failed, stop
           if(httpResponse.statusCode != 200) {
             var td = {
